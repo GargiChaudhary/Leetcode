@@ -11,12 +11,14 @@ class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
         int j = 0;
-        for(int i = 0; i < nums.size(); i++){
-            if(nums[i]==nums[i+1]){
-                nums[j]=nums[i];
+        for(int i = 1; i < nums.size(); i++){
+            if(nums[i] == nums[i-1]){
                 j++;
+            }else{
+                nums[i-j] = nums[i];
             }
         }
+        nums.erase(nums.end()-j , nums.end()); //erasing all the duplicate elements residing at the end part of the array
         return nums.size();
     }
 };
